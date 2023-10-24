@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 # rosdep install sound_play
-# rosmake sound_play
 
 import sys
 import os
