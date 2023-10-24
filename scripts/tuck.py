@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import rospy
-from arm_controller import ArmController
+from ArmController import ArmController
 
 if __name__ == '__main__':
     rospy.init_node("test_tuck")
