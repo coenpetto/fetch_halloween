@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(fetch-halloween)
+project(fetch_halloween)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -110,7 +110,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES fetch-halloween
+#  LIBRARIES fetch_halloween
   CATKIN_DEPENDS roscpp rospy std_msgs moveit_commander geometry_msgs message_runtime sensor_msgs cv_bridge
 #  DEPENDS system_lib
 )
@@ -128,7 +128,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/fetch-halloween.cpp
+#   src/${PROJECT_NAME}/fetch_halloween.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -139,7 +139,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/fetch-halloween_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/fetch_halloween_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -203,7 +203,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_fetch-halloween.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_fetch_halloween.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
