@@ -51,12 +51,11 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
-## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+# Generate messages in the 'msg' folder
+ add_message_files(
+   FILES
+   HumanDetected.msg
+ )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -166,7 +165,7 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
  catkin_install_python(PROGRAMS
-   scripts/ArmController.py scripts/BaseController.py scripts/speaker_node.py scripts/extension.py scripts/nav.py scripts/tuck.py
+   scripts/ArmController.py scripts/BaseController.py scripts/speaker_node.py scripts/demo.py scripts/detection_node.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 
