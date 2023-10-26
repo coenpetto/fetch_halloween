@@ -5,8 +5,11 @@
 
   <!-- Start sound_play main node -->
   <node name="soundplay_node" pkg="sound_play" type="soundplay_node.py"/>
-  
-  <!-- Start our custom funnel node  -->
-  <node name="speaker_node" pkg="fetch-halloween" type="speaker_node.py"/>
+
+  <!-- Start the detection node -->
+  <node name="detection_node" pkg="fetch-halloween" type="detection_node.py"/>
+
+  <!-- Run the demo -->
+  <node name="demo" pkg="fetch-halloween" type="demo.py"/>
 
 </launch>

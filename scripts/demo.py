@@ -2,21 +2,29 @@
 
 import rospy
 
-from ArmController import ArmController
 from BaseController import BaseController
 from fetch_halloween.msg import HumanDetected
 
 
-# TODO: Detection node that publishes when an object is detected
+def detection_callback(msg):
+    global base
+    rospy.loginfo("Human detected")
 
-def detection_callback():
-    rospy.logingo("Human detected")
-    # stop moving until the person is gone
+    if msg.detected:
+        # stop moving the base
+        base.cancel_movement()
+
+    else:
+        # continue
+        base.goto(0, 0, 1.57)
 
 
 if __name__ == "__main__":
     # Create a node
     rospy.init_node("demo")
+
+    # Need to keep track of which goal we're on
+    target_goal = 1
 
     # Make sure sim time is working
     while not rospy.Time.now():
@@ -24,7 +32,6 @@ if __name__ == "__main__":
 
     # Setup clients
     base = BaseController()
-    arm = ArmController()
 
     detection_topic = "/human_detection"
     rospy.Subscriber(detection_topic, HumanDetected, detection_callback)
