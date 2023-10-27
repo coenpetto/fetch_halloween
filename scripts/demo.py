@@ -15,7 +15,7 @@ def detection_callback(msg):
         base.cancel_movement()
 
     else:
-        # continue
+        # resume moving the base
         base.goto(0, 0, 1.57)
 
 
