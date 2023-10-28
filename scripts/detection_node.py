@@ -11,7 +11,8 @@ from sound_play.libsoundplay import SoundClient
 from ArmController import ArmController
 
 soundAssets = '/home/catkin_ws/src/fetch-halloween/sounds/'
-sounds = ['audio1.wav']
+sounds = ['audio1.wav', 'audio2.wav', 'audio3.wav', 'audio4.wav',
+          'audio5.wav', 'audio6.wav', 'audio7.wav', 'audio8.wav', 'audio9.wav']
 throttle = 3  # seconds
 moving = False
 

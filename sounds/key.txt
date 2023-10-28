@@ -1,1 +1,10 @@
 audio1 - You look like you need some candy.
+audio2 - Would you like a piece of candy?
+audio3 - Happy Halloween!
+audio4 - Do you like my costume?
+audio5 - Halloween is my favorite holiday.
+audio6 - BOO!
+
+audio7 - What is the scariest data type?  A BOO lean!
+audio8 - What do you call a spider on a computer?  A web developer.
+audio9 - Where do spiders do their shopping?  On the web.
