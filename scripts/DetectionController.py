@@ -43,6 +43,9 @@ class DetectionController(object):
 
             # TODO: ADD DETECTION CODE HERE
 
+            # TODO: Look at the person and rotate to face them for a couple seconds
+                # Then stop movement and offer them some candy
+
             self.offer_candy()
 
         except CvBridgeError as e:
@@ -61,6 +64,9 @@ class DetectionController(object):
 
         # Tuck the arm back in
         self.arm.tuck()
+
+        # Exit the entire sequence
+        self.completed = True
 
     def play_sound(self):
         if rospy.Time.now() <= self.allow_yak:           # Throttles yak to avoid

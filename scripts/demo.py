@@ -21,6 +21,7 @@ if __name__ == "__main__":
     rospy.loginfo("Moving to lobby...")
     base.goto(6.071, -2.995, 2.79253)
 
+    rospy.loginfo("Starting detection")
     detection.begin_detection()
 
     rospy.loginfo("Moving to main door...")
@@ -30,6 +31,7 @@ if __name__ == "__main__":
 
     rospy.loginfo("Moving to back door...")
     base.goto(-0.560, -18.986, -0.349066)
+
 
     detection.begin_detection()
 
