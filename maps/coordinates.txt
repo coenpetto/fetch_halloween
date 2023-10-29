@@ -1,0 +1,51 @@
+N-0 E-pi/2 S-pi W- -pi/2
+
+
+MAIN DOOR
+header: 
+  seq: 0
+  stamp: 
+    secs: 1060
+    nsecs: 529000000
+  frame_id: "map"
+point: 
+  x: 4.67769050598
+  y: 4.61559915543
+  z: -0.000558853149414
+---
+SIDE DOOR
+header: 
+  seq: 1
+  stamp: 
+    secs: 1452
+    nsecs: 204000000
+  frame_id: "map"
+point: 
+  x: 9.14362239838
+  y: -7.08086967468
+  z: 0.00450897216797
+---
+LOBBY
+header: 
+  seq: 2
+  stamp: 
+    secs: 1505
+    nsecs:   7000000
+  frame_id: "map"
+point: 
+  x: 6.07144165039
+  y: -2.9945898056
+  z: 0.00326919555664
+---
+BACK DOOR
+header: 
+  seq: 3
+  stamp: 
+    secs: 1538
+    nsecs: 814000000
+  frame_id: "map"
+point: 
+  x: -0.559858322144
+  y: -18.985906601
+  z: 0.00399208068848
+---
