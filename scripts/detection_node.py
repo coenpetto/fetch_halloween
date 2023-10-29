@@ -10,6 +10,9 @@ from sound_play.msg import SoundRequest
 from sound_play.libsoundplay import SoundClient
 from ArmController import ArmController
 
+# sudo apt-get install ros-melodic-sound-play
+# rosdep install sound_play
+
 soundAssets = '/home/catkin_ws/src/fetch-halloween/sounds/'
 sounds = ['audio1.wav', 'audio2.wav', 'audio3.wav', 'audio4.wav',
           'audio5.wav', 'audio6.wav', 'audio7.wav', 'audio8.wav', 'audio9.wav']

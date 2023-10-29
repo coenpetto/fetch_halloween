@@ -165,7 +165,7 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
  catkin_install_python(PROGRAMS
-   scripts/ArmController.py scripts/BaseController.py scripts/speaker_node.py scripts/demo.py scripts/detection_node.py
+   scripts/ArmController.py scripts/BaseController.py scripts/demo.py scripts/detection_node.py scripts/tuck.py scripts/extend.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 
