@@ -5,6 +5,7 @@ from math import sin, cos, radians
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from nav_msgs.msg import Odometry
 import tf.transformations as tf_trans
+from geometry_msgs.msg import Twist
 
 
 class BaseController(object):
@@ -14,8 +15,8 @@ class BaseController(object):
         rospy.loginfo("Waiting for move_base...")
         self.client.wait_for_server()
         self.current_pose = None
-        self.odom_subscriber = rospy.Subscriber(
-            '/odom', Odometry, self.odom_callback)
+        self.rotation_publisher = rospy.Publisher(
+            '/cmd_vel', Twist, queue_size=10)
 
     def goto(self, x, y, theta, frame="map"):
         move_goal = MoveBaseGoal()
@@ -33,17 +34,23 @@ class BaseController(object):
     def odom_callback(self, data):
         self.current_pose = data.pose.pose
 
-    def rotate(self, theta, frame="base_link"):
+    # def rotate(self, theta, frame="base_link"):
 
-        euler_angles = tf_trans.euler_from_quaternion([
-            self.current_pose.orientation.x,
-            self.current_pose.orientation.y,
-            self.current_pose.orientation.z,
-            self.current_pose.orientation.w
-        ])
+    #     euler_angles = tf_trans.euler_from_quaternion([
+    #         self.current_pose.orientation.x,
+    #         self.current_pose.orientation.y,
+    #         self.current_pose.orientation.z,
+    #         self.current_pose.orientation.w
+    #     ])
 
-        current_theta = euler_angles[2]
+    #     current_theta = euler_angles[2]
 
-        new_theta = theta + current_theta
+    #     new_theta = theta + current_theta
 
-        self.goto(0, 0, new_theta, frame)
+    #     self.goto(0, 0, new_theta, frame)
+
+    def rotate(self, theta):
+        rotate_cmd = Twist()
+        rotate_cmd.angular.z = theta
+
+        self.rotation_publisher.publish(rotate_cmd)
