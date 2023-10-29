@@ -9,4 +9,5 @@ if __name__ == '__main__':
     rospy.sleep(1)
 
     base = BaseController()
-    base.rotate_left(45)
+    base.rotate_right(1.57)
+    base.rotate_left(1.57)

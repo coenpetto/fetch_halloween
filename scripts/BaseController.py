@@ -1,10 +1,7 @@
 import actionlib
 import rospy
-import tf
-from math import sin, cos, radians
+from math import sin, cos
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
-from nav_msgs.msg import Odometry
-import tf.transformations as tf_trans
 from geometry_msgs.msg import Twist
 
 
@@ -14,7 +11,6 @@ class BaseController(object):
         self.client = actionlib.SimpleActionClient("move_base", MoveBaseAction)
         rospy.loginfo("Waiting for move_base...")
         self.client.wait_for_server()
-        self.current_pose = None
         self.rotation_publisher = rospy.Publisher(
             '/cmd_vel', Twist, queue_size=10)
 
@@ -31,26 +27,20 @@ class BaseController(object):
         self.client.send_goal(move_goal)
         self.client.wait_for_result()
 
-    def odom_callback(self, data):
-        self.current_pose = data.pose.pose
-
-    # def rotate(self, theta, frame="base_link"):
-
-    #     euler_angles = tf_trans.euler_from_quaternion([
-    #         self.current_pose.orientation.x,
-    #         self.current_pose.orientation.y,
-    #         self.current_pose.orientation.z,
-    #         self.current_pose.orientation.w
-    #     ])
-
-    #     current_theta = euler_angles[2]
-
-    #     new_theta = theta + current_theta
-
-    #     self.goto(0, 0, new_theta, frame)
-
-    def rotate(self, theta):
+    def rotate_right(self, theta):
         rotate_cmd = Twist()
-        rotate_cmd.angular.z = theta
+        rotate_cmd.angular.z = -0.5 # rad/s
 
-        self.rotation_publisher.publish(rotate_cmd)
+        end_time = rospy.Time.now() + rospy.Duration(theta)
+        while rospy.Time.now() < end_time:
+            self.rotation_publisher.publish(rotate_cmd)
+            rospy.sleep(0.1)
+
+    def rotate_left(self, theta):
+        rotate_cmd = Twist()
+        rotate_cmd.angular.z = 0.5 # rad/s
+
+        end_time = rospy.Time.now() + rospy.Duration(theta)
+        while rospy.Time.now() < end_time:
+            self.rotation_publisher.publish(rotate_cmd)
+            rospy.sleep(0.1)
