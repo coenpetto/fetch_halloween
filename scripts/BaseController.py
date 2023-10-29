@@ -3,7 +3,8 @@ import rospy
 import tf
 from math import sin, cos, radians
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
-from tf.transformations import euler_from_quaternion, quaternion_from_euler
+from nav_msgs.msg import Odometry
+import tf.transformations as tf_trans
 
 
 class BaseController(object):
@@ -12,6 +13,9 @@ class BaseController(object):
         self.client = actionlib.SimpleActionClient("move_base", MoveBaseAction)
         rospy.loginfo("Waiting for move_base...")
         self.client.wait_for_server()
+        self.current_pose = None
+        self.odom_subscriber = rospy.Subscriber(
+            '/odom', Odometry, self.odom_callback)
 
     def goto(self, x, y, theta, frame="map"):
         move_goal = MoveBaseGoal()
@@ -26,23 +30,20 @@ class BaseController(object):
         self.client.send_goal(move_goal)
         self.client.wait_for_result()
 
-    def get_current_orientation(self, frame="base_link"):
-        listener = tf.TransformListener()
-        listener.waitForTransform(
-            "/map", frame, rospy.Time(), rospy.Duration(4.0))
-        (trans, rot) = listener.lookupTransform("/map", frame, rospy.Time(0))
-        return rot
+    def odom_callback(self, data):
+        self.current_pose = data.pose.pose
 
-    def rotate_left(self, angle_degrees, frame="base_link"):
-        current_rot = self.get_current_orientation(frame)
-        (roll, pitch, yaw) = euler_from_quaternion(current_rot)
-        yaw += radians(angle_degrees)
-        q = quaternion_from_euler(roll, pitch, yaw)
-        self.goto(0, 0, yaw, frame)
+    def rotate(self, theta, frame="base_link"):
 
-    def rotate_right(self, angle_degrees, frame="base_link"):
-        current_rot = self.get_current_orientation(frame)
-        (roll, pitch, yaw) = euler_from_quaternion(current_rot)
-        yaw -= radians(angle_degrees)
-        q = quaternion_from_euler(roll, pitch, yaw)
-        self.goto(0, 0, yaw, frame)
+        euler_angles = tf_trans.euler_from_quaternion([
+            self.current_pose.orientation.x,
+            self.current_pose.orientation.y,
+            self.current_pose.orientation.z,
+            self.current_pose.orientation.w
+        ])
+
+        current_theta = euler_angles[2]
+
+        new_theta = theta + current_theta
+
+        self.goto(0, 0, new_theta, frame)
