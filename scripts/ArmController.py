@@ -20,7 +20,7 @@ class ArmController(object):
                 return
 
     def extend(self):
-        pose = [0.0, -0.3, 0.0, 0.8, 0.0, 0.9, 1.57]
+        pose = [0.0, -0.5, 0.0, 0.8, 0.0, 0.9, 1.57]
         while not rospy.is_shutdown():
             result = self.move_group.moveToJointPosition(
                 self.joints, pose, 0.02)
