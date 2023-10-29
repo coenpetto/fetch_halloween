@@ -1,7 +1,7 @@
 N-0 E-pi/2 S-pi W- -pi/2
 
 
-MAIN DOOR
+MAIN DOOR - 4.678, 4.616
 header: 
   seq: 0
   stamp: 
@@ -13,7 +13,7 @@ point:
   y: 4.61559915543
   z: -0.000558853149414
 ---
-SIDE DOOR
+SIDE DOOR - 9.144, -7.081
 header: 
   seq: 1
   stamp: 
@@ -25,7 +25,7 @@ point:
   y: -7.08086967468
   z: 0.00450897216797
 ---
-LOBBY
+LOBBY - 6.071, -2.995
 header: 
   seq: 2
   stamp: 
@@ -37,7 +37,7 @@ point:
   y: -2.9945898056
   z: 0.00326919555664
 ---
-BACK DOOR
+BACK DOOR - -0.560, -18.986
 header: 
   seq: 3
   stamp: 

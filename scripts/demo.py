@@ -3,28 +3,12 @@
 import rospy
 
 from BaseController import BaseController
-from fetch_halloween.msg import HumanDetected
-
-
-def detection_callback(msg):
-    global base
-    rospy.loginfo("Human detected")
-
-    if msg.detected:
-        # stop moving the base
-        base.cancel_movement()
-
-    else:
-        # resume moving the base
-        base.goto(0, 0, 1.57)
+from DetectionController import DetectionController
 
 
 if __name__ == "__main__":
     # Create a node
     rospy.init_node("demo")
-
-    # Need to keep track of which goal we're on
-    target_goal = 1
 
     # Make sure sim time is working
     while not rospy.Time.now():
@@ -32,9 +16,24 @@ if __name__ == "__main__":
 
     # Setup clients
     base = BaseController()
+    detection = DetectionController()
 
-    detection_topic = "/human_detection"
-    rospy.Subscriber(detection_topic, HumanDetected, detection_callback)
+    rospy.loginfo("Moving to lobby...")
+    base.goto(6.071, -2.995, 2.79253)
 
-    rospy.loginfo("Moving to goal 1")
-    base.goto(0, 0, 1.57)
+    detection.begin_detection()
+
+    rospy.loginfo("Moving to main door...")
+    base.goto(4.678, 4.616, 2.79253)
+
+    detection.begin_detection()
+
+    rospy.loginfo("Moving to back door...")
+    base.goto(-0.560, -18.986, -0.349066)
+
+    detection.begin_detection()
+
+    rospy.loginfo("Moving to side door...")
+    base.goto(9.144, -7.081, 3.49066)
+
+    detection.begin_detection()

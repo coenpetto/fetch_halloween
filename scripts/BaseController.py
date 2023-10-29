@@ -22,6 +22,7 @@ class BaseController(object):
 
         # wait for things to work
         self.client.send_goal(move_goal)
+        self.client.wait_for_result()
 
     def rotate_left(self, angle_degrees, frame="base_link"):
         current_theta = radians(angle_degrees)
@@ -30,6 +31,3 @@ class BaseController(object):
     def rotate_right(self, angle_degrees, frame="base_link"):
         current_theta = -radians(angle_degrees)
         self.goto(0, 0, current_theta, frame)
-
-    def cancel_movement(self):
-        self.client.cancelAllGoals()
