@@ -40,7 +40,7 @@ class DetectionController(object):
 
         # Wait for the HOG to initialize
         self.hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
-        rospy.sleep(2)
+        rospy.sleep(1)
 
         # Get frames from the robot's camera
         image_topic = "/head_camera/rgb/image_raw"
@@ -50,7 +50,7 @@ class DetectionController(object):
         follow_person_thread = rospy.Timer(
             rospy.Duration(0.1), self.follow_person)
 
-        # Follow for some seconds
+        # Continue following for some seconds
         rospy.sleep(5)
 
         # Stop following the person
@@ -73,9 +73,9 @@ class DetectionController(object):
         if w != 0:
             # Is the detection to the left or right of the center of the image frame?
             if (x + (w / 2)) < (self.target_detection["image_width"] / 2):
-                self.base.rotate_left(0.2)
+                self.base.rotate_left(0.1)
             elif (x + (w / 2)) > (self.target_detection["image_width"] / 2):
-                self.base.rotate_right(0.2)
+                self.base.rotate_right(0.1)
 
     def image_callback(self, img_msg):
         """ Process the image messages from ROS and store the closest detection in self.target_detection"""
@@ -85,13 +85,11 @@ class DetectionController(object):
             image = imutils.resize(cv_image,
                                    width=min(400, cv_image.shape[1]))
 
-            # Detecting all the regions
             (regions, _) = self.hog.detectMultiScale(image,
                                                      winStride=(4, 4),
                                                      padding=(4, 4),
                                                      scale=1.05)
 
-            # Use regions
             for (x, y, w, h) in regions:
                 # Draw rectangle around detection
                 cv2.rectangle(image, (x, y),
@@ -123,7 +121,7 @@ class DetectionController(object):
         self.play_sound()
 
         # Wait for some time
-        rospy.sleep(5)
+        rospy.sleep(15)
 
         # Tuck the arm back in
         self.arm.tuck()

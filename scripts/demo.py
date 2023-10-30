@@ -5,6 +5,13 @@ import rospy
 from BaseController import BaseController
 from DetectionController import DetectionController
 
+goals = {
+    "lobby": [6.071, -2.995, 2.79253],
+    "main door": [4.678, 4.616, 2.79253],
+    "back door": [-0.560, -18.986, -0.349066],
+    "side door": [9.144, -7.081, 3.49066]
+}
+
 
 if __name__ == "__main__":
     # Create a node
@@ -18,24 +25,9 @@ if __name__ == "__main__":
     base = BaseController()
     detection = DetectionController()
 
-    rospy.loginfo("Moving to lobby...")
-    base.goto(6.071, -2.995, 2.79253)
-
-    rospy.loginfo("Starting detection")
-    detection.begin_detection()
-
-    rospy.loginfo("Moving to main door...")
-    base.goto(4.678, 4.616, 2.79253)
-
-    detection.begin_detection()
-
-    rospy.loginfo("Moving to back door...")
-    base.goto(-0.560, -18.986, -0.349066)
-
-
-    detection.begin_detection()
-
-    rospy.loginfo("Moving to side door...")
-    base.goto(9.144, -7.081, 3.49066)
-
-    detection.begin_detection()
+    # Move to the goals
+    for goal in goals:
+        rospy.loginfo("Moving to %s...", goal)
+        base.goto(goals[goal][0], goals[goal][1], goals[goal][2])
+        rospy.loginfo("Starting detection")
+        detection.begin_detection()
