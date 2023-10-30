@@ -5,7 +5,6 @@ import cv2
 import imutils
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
-from fetch_halloween.msg import HumanDetected
 from sound_play.msg import SoundRequest
 from sound_play.libsoundplay import SoundClient
 from ArmController import ArmController
@@ -76,6 +75,8 @@ class DetectionController(object):
                 self.base.rotate_left(0.1)
             elif (x + (w / 2)) > (self.target_detection["image_width"] / 2):
                 self.base.rotate_right(0.1)
+        else:
+            rospy.loginfo("No detection")
 
     def image_callback(self, img_msg):
         """ Process the image messages from ROS and store the closest detection in self.target_detection"""
