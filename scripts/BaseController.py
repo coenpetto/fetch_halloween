@@ -15,6 +15,7 @@ class BaseController(object):
             '/cmd_vel', Twist, queue_size=10)
 
     def goto(self, x, y, theta, frame="map"):
+        " Send a goal to the navigation stack "
         move_goal = MoveBaseGoal()
         move_goal.target_pose.pose.position.x = x
         move_goal.target_pose.pose.position.y = y
@@ -27,20 +28,22 @@ class BaseController(object):
         self.client.send_goal(move_goal)
         self.client.wait_for_result()
 
-    def rotate_right(self, theta):
+    def rotate_right(self, duration):
+        " Send Twist commands to rotate the robot to the right"
         rotate_cmd = Twist()
-        rotate_cmd.angular.z = -0.5 # rad/s
+        rotate_cmd.angular.z = -0.5  # rad/s
 
-        end_time = rospy.Time.now() + rospy.Duration(theta)
+        end_time = rospy.Time.now() + rospy.Duration(duration)
         while rospy.Time.now() < end_time:
             self.rotation_publisher.publish(rotate_cmd)
             rospy.sleep(0.1)
 
-    def rotate_left(self, theta):
+    def rotate_left(self, duration):
+        " Send Twist commands to rotate the robot to the left"
         rotate_cmd = Twist()
-        rotate_cmd.angular.z = 0.5 # rad/s
+        rotate_cmd.angular.z = 0.5  # rad/s
 
-        end_time = rospy.Time.now() + rospy.Duration(theta)
+        end_time = rospy.Time.now() + rospy.Duration(duration)
         while rospy.Time.now() < end_time:
             self.rotation_publisher.publish(rotate_cmd)
             rospy.sleep(0.1)

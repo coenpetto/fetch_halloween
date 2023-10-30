@@ -12,6 +12,7 @@ class ArmController(object):
                        "forearm_roll_joint", "wrist_flex_joint", "wrist_roll_joint"]
 
     def tuck(self):
+        """ Tuck the arm"""
         pose = [0.0, 1.5, 0.0, -2.3, 0.0, 1.7, 1.57]
         while not rospy.is_shutdown():
             result = self.move_group.moveToJointPosition(
@@ -20,6 +21,7 @@ class ArmController(object):
                 return
 
     def extend(self):
+        """ Extend the arm forward"""
         pose = [0.0, -0.5, 0.0, 0.8, 0.0, 0.9, 1.57]
         while not rospy.is_shutdown():
             result = self.move_group.moveToJointPosition(
