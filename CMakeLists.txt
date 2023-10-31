@@ -13,7 +13,6 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   message_generation
-  moveit_commander
   sensor_msgs
   cv_bridge
   tf
@@ -111,7 +110,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES fetch_halloween
-  CATKIN_DEPENDS roscpp rospy std_msgs moveit_commander geometry_msgs message_runtime sensor_msgs cv_bridge tf
+  CATKIN_DEPENDS roscpp rospy std_msgs geometry_msgs message_runtime sensor_msgs cv_bridge tf
 #  DEPENDS system_lib
 )
 

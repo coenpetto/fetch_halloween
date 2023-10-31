@@ -63,7 +63,7 @@ class DetectionController(object):
 
         subscriber.unregister()
 
-    def follow_person(self):
+    def follow_person(self, timer):
         """ Follow the person by rotating left or right depending on where they are in the frame"""
 
         x, y, w, h = self.target_detection["dims"]
@@ -116,7 +116,7 @@ class DetectionController(object):
     def offer_candy(self):
         """ Offer the candy to the person """
         # Extend the arm to offer the bowl
-        self.arm.extend()
+        #self.arm.extend()
 
         # Say something
         self.play_sound()
@@ -125,7 +125,7 @@ class DetectionController(object):
         rospy.sleep(15)
 
         # Tuck the arm back in
-        self.arm.tuck()
+        #self.arm.tuck()
 
         # Exit the entire sequence
         self.completed = True

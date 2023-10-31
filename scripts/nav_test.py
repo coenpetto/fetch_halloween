@@ -6,7 +6,7 @@ from BaseController import BaseController
 
 goals = {
     "lobby": [6.071, -2.995, 2.79253],
-    "main door": [4.678, 4.616, 2.79253],
+    #"main door": [4.678, 4.616, 2.79253],
     "back door": [-0.560, -18.986, -0.349066],
     "side door": [9.144, -7.081, 3.49066]
 }
