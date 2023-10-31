@@ -5,7 +5,7 @@ import random
 from playsound import playsound
 
 
-sound_assets = '/home/bot_ws/src/fetch-halloween/sounds/'
+sound_assets = '/home/fetch/bot_ws/src/fetch-halloween/sounds/'
 sounds = ['audio1.wav', 'audio2.wav', 'audio3.wav', 'audio4.wav',
           'audio5.wav', 'audio6.wav', 'audio7.wav', 'audio8.wav', 'audio9.wav']
 

@@ -3,6 +3,7 @@ import cv2
 import random
 import cv2
 import imutils
+from playsound import playsound
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 from sound_play.msg import SoundRequest
@@ -24,7 +25,7 @@ class DetectionController(object):
         # self.hog = cv2.HOGDescriptor()
         self.allow_yak = rospy.Time.now()
         self.throttle = 3  # seconds
-        self.sound_assets = '/home/bot_ws/src/fetch-halloween/sounds/'
+        self.sound_assets = '/home/fetch/bot_ws/src/fetch-halloween/sounds/'
         self.sounds = ['audio1.wav', 'audio2.wav', 'audio3.wav', 'audio4.wav',
                        'audio5.wav', 'audio6.wav', 'audio7.wav', 'audio8.wav', 'audio9.wav']
         self.target_detection = {
@@ -140,14 +141,7 @@ class DetectionController(object):
 
     def play_sound(self, cmd):
         """ Play a random sound from the list """
-        if rospy.Time.now() <= self.allow_yak:           # Throttles yak to avoid
-            rospy.logwarn("Sound client throttled")      # SoundClient segfault
-            return
-        # when to reallow yak
-        self.allow_yak = rospy.Time.now() + rospy.Duration.from_sec(self.throttle)
-
         if cmd == "voice":
-            self.soundhandle.playWave(
-                self.sound_assets + random.choice(self.sounds))
-        elif cmd == "warning":
-            self.soundhandle.playWave(self.sound_assets + "warning.wav")
+            playsound(self.sound_assets + random.choice(self.sounds))
+        else:
+            playsound(self.sound_assets + "warning.wav")
