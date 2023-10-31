@@ -56,13 +56,16 @@ class DetectionController(object):
         # follow_person_thread.shutdown()
 
         # Offer the candy
-        rospy.sleep(1)
+        rospy.sleep(2)
         self.offer_candy()
 
         while not self.completed and not rospy.is_shutdown():
             rospy.sleep(0.1)  # Spin the class until the candy routine is over
 
         # subscriber.unregister()
+
+        rospy.loginfo(
+            "Finished offering candy complete: Exiting Detection Controller")
 
     def follow_person(self, timer):
         """ Follow the person by rotating left or right depending on where they are in the frame"""
