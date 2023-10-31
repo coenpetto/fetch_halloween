@@ -24,7 +24,7 @@ class DetectionController(object):
         self.hog = cv2.HOGDescriptor()
         self.allow_yak = rospy.Time.now()
         self.throttle = 3  # seconds
-        self.sound_assets = '/home/catkin_ws/src/fetch-halloween/sounds/'
+        self.sound_assets = '/home/bot_ws/src/fetch-halloween/sounds/'
         self.sounds = ['audio1.wav', 'audio2.wav', 'audio3.wav', 'audio4.wav',
                        'audio5.wav', 'audio6.wav', 'audio7.wav', 'audio8.wav', 'audio9.wav']
         self.target_detection = {
@@ -116,7 +116,7 @@ class DetectionController(object):
     def offer_candy(self):
         """ Offer the candy to the person """
         # Extend the arm to offer the bowl
-        #self.arm.extend()
+        # self.arm.extend()
 
         # Say something
         self.play_sound()
@@ -125,7 +125,7 @@ class DetectionController(object):
         rospy.sleep(15)
 
         # Tuck the arm back in
-        #self.arm.tuck()
+        # self.arm.tuck()
 
         # Exit the entire sequence
         self.completed = True
