@@ -3,6 +3,7 @@ import rospy
 from math import sin, cos
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from geometry_msgs.msg import Twist
+from actionlib_msgs.msg import GoalStatus
 
 
 class BaseController(object):
@@ -26,7 +27,20 @@ class BaseController(object):
 
         # wait for things to work
         self.client.send_goal(move_goal)
-        self.client.wait_for_result()
+        res = self.client.wait_for_result()
+
+        if not res:
+            self.client.cancel_goal()
+            rospy.loginfo("Timed out achieving goal")
+            return False
+        else:
+            state = self.client.get_state()
+            if state == GoalStatus.SUCCEEDED:
+                rospy.loginfo("Goal succeeded!")
+                return True
+            else:
+                rospy.loginfo("Goal failed!")
+                return False
 
     def rotate_right(self, duration):
         " Send Twist commands to rotate the robot to the right"
@@ -47,3 +61,7 @@ class BaseController(object):
         while rospy.Time.now() < end_time:
             self.rotation_publisher.publish(rotate_cmd)
             rospy.sleep(0.1)
+
+    def cancel_goals(self):
+        " Cancel all goals in the navigation stack"
+        self.client.cancel_all_goals()

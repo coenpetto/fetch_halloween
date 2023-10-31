@@ -20,8 +20,8 @@ class DetectionController(object):
         self.arm = ArmController()
         self.base = BaseController()
         self.soundhandle = SoundClient()
-        self.bridge = CvBridge()
-        self.hog = cv2.HOGDescriptor()
+        # self.bridge = CvBridge()
+        # self.hog = cv2.HOGDescriptor()
         self.allow_yak = rospy.Time.now()
         self.throttle = 3  # seconds
         self.sound_assets = '/home/bot_ws/src/fetch-halloween/sounds/'
@@ -37,31 +37,32 @@ class DetectionController(object):
     def begin_detection(self):
         """ Start the detection routine """
 
-        # Wait for the HOG to initialize
-        self.hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
-        rospy.sleep(1)
+        # # Wait for the HOG to initialize
+        # self.hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
+        # rospy.sleep(1)
 
-        # Get frames from the robot's camera
-        image_topic = "/head_camera/rgb/image_raw"
-        subscriber = rospy.Subscriber(image_topic, Image, self.image_callback)
+        # # Get frames from the robot's camera
+        # image_topic = "/head_camera/rgb/image_raw"
+        # subscriber = rospy.Subscriber(image_topic, Image, self.image_callback)
 
-        # Start following the person
-        follow_person_thread = rospy.Timer(
-            rospy.Duration(0.1), self.follow_person)
+        # # Start following the person
+        # follow_person_thread = rospy.Timer(
+        #     rospy.Duration(0.1), self.follow_person)
 
-        # Continue following for some seconds
-        rospy.sleep(5)
+        # # Continue following for some seconds
+        # rospy.sleep(5)
 
-        # Stop following the person
-        follow_person_thread.shutdown()
+        # # Stop following the person
+        # follow_person_thread.shutdown()
 
         # Offer the candy
+        rospy.sleep(1)
         self.offer_candy()
 
         while not self.completed and not rospy.is_shutdown():
             rospy.sleep(0.1)  # Spin the class until the candy routine is over
 
-        subscriber.unregister()
+        # subscriber.unregister()
 
     def follow_person(self, timer):
         """ Follow the person by rotating left or right depending on where they are in the frame"""
@@ -116,26 +117,34 @@ class DetectionController(object):
     def offer_candy(self):
         """ Offer the candy to the person """
         # Extend the arm to offer the bowl
-        # self.arm.extend()
+        self.arm.extend()
 
         # Say something
-        self.play_sound()
+        self.play_sound("voice")
 
         # Wait for some time
-        rospy.sleep(15)
+        rospy.sleep(10)
+
+        # Warn about arm
+        self.play_sound("warning")
+        rospy.sleep(5)
 
         # Tuck the arm back in
-        # self.arm.tuck()
+        self.arm.tuck()
 
         # Exit the entire sequence
         self.completed = True
 
-    def play_sound(self):
+    def play_sound(self, cmd):
         """ Play a random sound from the list """
         if rospy.Time.now() <= self.allow_yak:           # Throttles yak to avoid
             rospy.logwarn("Sound client throttled")      # SoundClient segfault
             return
         # when to reallow yak
         self.allow_yak = rospy.Time.now() + rospy.Duration.from_sec(self.throttle)
-        self.soundhandle.playWave(
-            self.sound_assets + random.choice(self.sounds))
+
+        if cmd == "voice":
+            self.soundhandle.playWave(
+                self.sound_assets + random.choice(self.sounds))
+        elif cmd == "warning":
+            self.soundhandle.playWave(self.sound_assets + "warning.wav")
