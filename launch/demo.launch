@@ -1,12 +1,5 @@
 <launch>
 
-  <!-- Start navigation -->
-  <include file="$(find fetch_halloween)/launch/fetch_nav.launch" />
-
-  <!-- Start sound_play main node -->
-  <node name="soundplay_node" pkg="sound_play" type="soundplay_node.py"/>
-
-  <!-- Run the demo -->
-  <node name="demo" pkg="fetch_halloween" type="demo.py"/>
+<node name="demo" pkg="fetch_halloween" type="demo.py"/>
 
 </launch>
