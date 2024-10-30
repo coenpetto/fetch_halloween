@@ -8,6 +8,12 @@
 
 <node pkg="rviz" type="rviz" name="$(anon rviz)" args="-d $(find fetch_halloween)/config/map_nav.rviz"/> -->
 
-<node name="demo" pkg="fetch_halloween" type="sim_demo.py"/>
+<node pkg="people" type="people_tracker" name="people_tracker" output="screen">
+        <!-- Set the sensor topic that the tracker should use -->
+        <param name="sensor" value="/head_camera/depth_downsample/image_raw"/>  <!-- Adjust this to your camera's topic -->
+        <param name="max_distance" value="10.0"/>  <!-- Adjust based on the range of detection -->
+    </node>
+
+<!-- <node name="demo" pkg="fetch_halloween" type="sim_demo.py"/> -->
 
 </launch>
