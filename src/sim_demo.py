@@ -3,13 +3,13 @@
 import rospy
 
 from BaseController import BaseController
-from DetectionController import DetectionController
+from DetectionController4 import DetectionController4
 
 goals = {
-    "lobby": [2.27844619751, 2.7609167099, 0.358169555664],
+    "lobby": [1.49356460571, 2.37614440918, -0.000372886657715],
     # "main door": [4.678, 4.616, 2.79253],
-    "back door": [3.01748561859, 5.96243572235, -0.000566482543945],
-    "side door": [4.58303928375, 5.43015241623, 0.00215721130371]
+    "back door": [3.02198314667, 5.3306350708, 0.0060510635376],
+    "side door": [4.31612586975, 5.35473537445, 0.00382804870605]
 }
 
 if __name__ == "__main__":
@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     # Setup clients
     base = BaseController()
-    detection = DetectionController()
+    detection = DetectionController4()
 
     # Move to the goals
     while True:
