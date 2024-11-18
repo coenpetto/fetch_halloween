@@ -1,0 +1,18 @@
+
+Front Door
+- Translation: [10.224, -3.066, 0.000]
+- Rotation: in Quaternion [0.000, 0.000, -0.421, 0.907]
+            in RPY (radian) [0.000, 0.000, -0.869]
+            in RPY (degree) [0.000, 0.000, -49.768]
+
+CSB130
+- Translation: [0.591, -2.182, 0.000]
+- Rotation: in Quaternion [0.000, 0.000, 0.992, -0.124]
+            in RPY (radian) [0.000, 0.000, -2.892]
+            in RPY (degree) [0.000, 0.000, -165.712]
+
+CSB120
+ Translation: [-0.770, 3.259, 0.000]
+- Rotation: in Quaternion [0.000, 0.000, 0.942, 0.336]
+            in RPY (radian) [0.000, -0.000, 2.457]
+            in RPY (degree) [0.000, -0.000, 140.766]

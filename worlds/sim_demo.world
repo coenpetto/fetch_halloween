@@ -85,28 +85,28 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <state world_name='default'>
-      <sim_time>1491 486000000</sim_time>
-      <real_time>1097 696569913</real_time>
-      <wall_time>1729478172 904931398</wall_time>
-      <iterations>1023563</iterations>
+      <sim_time>1523 487000000</sim_time>
+      <real_time>32 108117376</real_time>
+      <wall_time>1729482228 393417832</wall_time>
+      <iterations>32001</iterations>
       <model name='Construction Barrel'>
         <pose frame=''>8.67484 6.75561 0.004999 3e-06 -0 0.195156</pose>
         <scale>1 1 1</scale>
         <link name='link'>
           <pose frame=''>8.67484 6.75561 0.004999 3e-06 -0 0.195156</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>2.76323 -3.14805 -0.542142 1.58808 0.616758 0.008824</acceleration>
-          <wrench>1381.62 -1574.02 -271.071 0 -0 0</wrench>
+          <acceleration>2.65228 -3.13963 -0.675631 1.56528 0.341807 0.008172</acceleration>
+          <wrench>1326.14 -1569.81 -337.815 0 -0 0</wrench>
         </link>
       </model>
       <model name='Construction Cone'>
-        <pose frame=''>8.80903 5.3301 0.004991 1e-06 -0 -3e-06</pose>
+        <pose frame=''>8.80903 5.3301 0.005 0 2e-06 -3e-06</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>8.80903 5.3301 0.004991 1e-06 -0 -3e-06</pose>
+          <pose frame=''>8.80903 5.3301 0.005 0 2e-06 -3e-06</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 -9.8 0 -0 0</acceleration>
-          <wrench>0 0 -9.8 0 -0 0</wrench>
+          <acceleration>1e-06 1e-06 -1.08728 -2.1909 1.48255 -0</acceleration>
+          <wrench>1e-06 1e-06 -1.08728 0 -0 0</wrench>
         </link>
       </model>
       <model name='Starting Pen'>
@@ -180,33 +180,33 @@
         </link>
       </model>
       <model name='person_standing'>
-        <pose frame=''>6.92284 5.4336 0.004999 -1e-06 1e-06 -1.51041</pose>
+        <pose frame=''>6.92284 5.43358 0.005 1e-06 -1e-06 -1.51066</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>6.92284 5.4336 0.004999 -1e-06 1e-06 -1.51041</pose>
+          <pose frame=''>6.92284 5.43358 0.005 1e-06 -1e-06 -1.51066</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>1.23879 -1.55265 -1.44609 1.56283 1.3512 -0.045409</acceleration>
-          <wrench>99.1034 -124.212 -115.687 0 -0 0</wrench>
+          <acceleration>-1.23869 1.55336 -1.43537 -1.56969 -1.35663 -0.045152</acceleration>
+          <wrench>-99.0951 124.269 -114.83 0 -0 0</wrench>
         </link>
       </model>
       <model name='person_standing_0'>
-        <pose frame=''>3.33068 7.87906 0.005 1e-06 1e-06 0.000538</pose>
+        <pose frame=''>3.33064 7.87906 0.005 -1e-06 -1e-06 0.000924</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>3.33068 7.87906 0.005 1e-06 1e-06 0.000538</pose>
+          <pose frame=''>3.33064 7.87906 0.005 -1e-06 -1e-06 0.000924</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>1.67201 -1.17637 -1.28575 -1.94765 1.45963 -3.08271</acceleration>
-          <wrench>133.761 -94.1095 -102.86 0 -0 0</wrench>
+          <acceleration>2.20155 -1.50197 1.41888 -1.42497 0.918245 2.85045</acceleration>
+          <wrench>176.124 -120.158 113.51 0 -0 0</wrench>
         </link>
       </model>
       <model name='person_standing_1'>
-        <pose frame=''>4.28438 2.45326 0.005 -1e-06 -1e-06 -1.5617</pose>
+        <pose frame=''>4.28438 2.4533 0.005 -1e-06 -1e-06 -1.56132</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>4.28438 2.45326 0.005 -1e-06 -1e-06 -1.5617</pose>
+          <pose frame=''>4.28438 2.4533 0.005 -1e-06 -1e-06 -1.56132</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-1.5104 -2.24122 1.57786 -0.935942 -1.37686 2.91216</acceleration>
-          <wrench>-120.832 -179.298 126.229 0 -0 0</wrench>
+          <acceleration>1.10759 1.60665 -1.58443 -1.62757 1.21808 0.044429</acceleration>
+          <wrench>88.6071 128.532 -126.754 0 -0 0</wrench>
         </link>
       </model>
       <model name='table_marble'>
@@ -237,9 +237,6 @@
       </model>
       <light name='sun'>
         <pose frame=''>0 0 10 0 -0 0</pose>
-      </light>
-      <light name='user_point_light_0'>
-        <pose frame=''>3.52371 3.22647 6 0 -0 0</pose>
       </light>
     </state>
     <gui fullscreen='0'>
@@ -2685,18 +2682,5 @@
       </link>
       <pose frame=''>4.2844 2.45324 0 0 -0 0</pose>
     </model>
-    <light name='user_point_light_0' type='point'>
-      <pose frame=''>3.52371 3.22647 1 0 -0 0</pose>
-      <diffuse>0.5 0.5 0.5 1</diffuse>
-      <specular>0.1 0.1 0.1 1</specular>
-      <attenuation>
-        <range>20</range>
-        <constant>0.5</constant>
-        <linear>0.01</linear>
-        <quadratic>0.001</quadratic>
-      </attenuation>
-      <cast_shadows>0</cast_shadows>
-      <direction>0 0 -1</direction>
-    </light>
   </world>
 </sdf>

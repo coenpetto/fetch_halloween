@@ -6,14 +6,16 @@ from BaseController import BaseController
 from DetectionController import DetectionController
 
 goals = {
-    "lobby": [6.071, -2.995, 2.79253],
+    "lobby": [10.224, -3.066, 0.0],
     # "main door": [4.678, 4.616, 2.79253],
-    "back door": [-0.560, -18.986, -0.349066],
-    "side door": [9.144, -7.081, 3.49066]
+    "back door": [0.591, -2.182, 0.0],
+    "side door": [-0.770, 3.259, 0.0]
 }
 
 if __name__ == "__main__":
     # Create a node
+    # print(type(rospy.get_master().target))
+    print(rospy.get_master().target)
     rospy.init_node("demo")
 
     # Make sure sim time is working
